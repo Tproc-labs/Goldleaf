@@ -21,6 +21,25 @@ jobs:
         sudo -n dkp-pacman --noconfirm -U \
           "https://wii.leseratte10.de/devkitPro/other-stuff/dkp-toolchain-vars-1.0.2-1-any.pkg.tar.xz"
 
+    - name: Create freetype-config wrapper
+      run: |
+        sudo tee /usr/local/bin/freetype-config > /dev/null << 'EOF'
+        #!/bin/bash
+        case "$1" in
+          --libs)
+            echo "-lfreetype -lharfbuzz -lbz2 -lz -lpng"
+            ;;
+          --cflags)
+            echo "-I${PORTLIBS_PREFIX}/include/freetype2"
+            ;;
+          *)
+            echo "Usage: freetype-config [--libs|--cflags]"
+            exit 1
+            ;;
+        esac
+        EOF
+        sudo chmod +x /usr/local/bin/freetype-config
+
     - name: Silence all git safe directory warnings
       run: git config --system --add safe.directory '*'
 
