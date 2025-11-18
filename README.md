@@ -1,4 +1,5 @@
 <h1 style="font-size:100px; color:red;">THIS IS NOT THE OFFICIAL REPO!!!</h1>
+<h1>This is my personal attempt at recompiling Goldleaf for 21.0.0 on new libnx (as that has not been done officially yet!)<br>I am an amateur!</h1>
 
 <p align="center">
   <img alt="Goldleaf" src="Goldleaf/romfs/Logo.png">
